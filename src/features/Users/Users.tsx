@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Table from "../../components/Table";
 import Pagination from "../../components/Pagination";
 import SearchInput from "../../components/SearchInput";
-import useDebounce from "../../hooks/useDebounce.ts";
-import useUsers from "./hooks/useUsers.ts";
-import { config } from "./config.ts";
+import useDebounce from "../../hooks/useDebounce";
+import useUsers from "./hooks/useUsers";
+import { config } from "./config";
 
 const Users = () => {
   const [columns, setColumns] = useState(config.columns);
@@ -18,13 +18,13 @@ const Users = () => {
 
   const { users, total } = useUsers(debouncedSearchQuery, debouncedPage, debouncedLimit);
 
-  const toggleColumnVisibility = (key: string) => {
+  const toggleColumnVisibility = useCallback((key: string) => {
     setColumns((prevColumns) =>
       prevColumns.map((col) =>
         col.key === key ? { ...col, hidden: !col.hidden } : col
       )
     );
-  };
+  }, []);
 
   useEffect(() => {
     const isFirstPage = page === 1;

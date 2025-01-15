@@ -1,8 +1,8 @@
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import TableColumns from "./components/TableColumns.tsx";
-import TableRows from "./components/TableRows.tsx";
+import TableColumns from "./components/TableColumns";
+import TableRows from "./components/TableRows";
 import Scrollbar from "../../ui/Scrollbar";
-import { Column, Row } from "./types.ts";
+import { Column, Row } from "./types";
 
 type Props = {
   columns: Column[];
@@ -26,7 +26,6 @@ const Table = ({ columns, rows, label, toggleColumnVisibility }: Props) => (
         </tbody>
       </table>
     </ScrollArea.Viewport>
-
     <Scrollbar />
   </ScrollArea.Root>
 );

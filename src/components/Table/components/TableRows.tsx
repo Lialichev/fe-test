@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
-import { Column, Row } from "../types.ts";
+import { Column, Row } from "../types";
 
 type Props = {
   columns: Column[];

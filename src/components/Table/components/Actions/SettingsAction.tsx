@@ -5,7 +5,7 @@ import ColumnCheckboxList from "./ColumnCheckboxList";
 import SearchInput from "../../../SearchInput";
 import IconButton from "../../../../ui/IconButton";
 import Scrollbar from "../../../../ui/Scrollbar";
-import { Column } from "../../types.ts";
+import { Column } from "../../types";
 import settingsIcon from "../../../../assets/settings.svg";
 
 type Props = {

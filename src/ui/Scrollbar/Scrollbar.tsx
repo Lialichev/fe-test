@@ -1,3 +1,4 @@
+import { memo } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 
 
@@ -21,4 +22,4 @@ const Scrollbar = () => (
   </>
 );
 
-export default Scrollbar;
+export default memo(Scrollbar);

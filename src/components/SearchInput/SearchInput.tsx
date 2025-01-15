@@ -1,5 +1,6 @@
-import searchIcon from '../../assets/search.svg';
+import { memo } from "react";
 import Input from "../../ui/Input";
+import searchIcon from '../../assets/search.svg';
 
 type Props = {
   value: string;
@@ -21,4 +22,4 @@ const SearchInput = ({ value, onChange } : Props) => (
   />
 );
 
-export default SearchInput;
+export default memo(SearchInput);

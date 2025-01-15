@@ -1,5 +1,5 @@
 import * as SelectUI from "@radix-ui/react-select";
-import { Option } from "./types.ts";
+import { Option } from "./types";
 import checkIcon from "../../assets/check.svg";
 
 type Props = {

@@ -1,5 +1,4 @@
-import { Column, FullNameCell, GenderCell } from "../../components/Table";
-import FilterAction from "../../components/Table/components/Actions/SettingsAction.tsx";
+import { Column, FullNameCell, GenderCell, SettingsAction } from "../../components/Table";
 
 type Config = {
   columns: Column[];
@@ -21,6 +20,6 @@ export const config: Config = {
     { key: 'company', label: 'Company' },
     { key: 'ein', label: 'Ein' },
     { key: 'ssn', label: 'SSN' },
-    { key: 'filter', action: FilterAction },
+    { key: 'filter', action: SettingsAction },
   ],
 }

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import PaginationLimit from "./components/PaginationLimit.tsx";
+import PaginationLimit from "./components/PaginationLimit";
 import { Option } from "../../ui/Select";
 import Input from "../../ui/Input";
 import IconButton from "../../ui/IconButton";

@@ -1,5 +1,6 @@
+import { memo } from "react";
 import Select, { Option } from "../../../ui/Select";
-import { defaultLimitOptions } from "../constants.ts";
+import { defaultLimitOptions } from "../constants";
 
 type Props = {
   limit: number;
@@ -24,4 +25,4 @@ const PaginationLimit = ({ limit, options = defaultLimitOptions, onChange }: Pro
   );
 };
 
-export default PaginationLimit;
+export default memo(PaginationLimit);

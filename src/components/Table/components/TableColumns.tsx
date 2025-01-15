@@ -1,5 +1,6 @@
+import { memo } from "react";
 import clsx from "clsx";
-import { Column } from "../types.ts";
+import { Column } from "../types";
 
 type Props = {
   columns: Column[];
@@ -31,4 +32,4 @@ const TableColumns = ({ columns, toggleColumnVisibility }: Props) => (
   </tr>
 );
 
-export default TableColumns;
+export default memo(TableColumns);

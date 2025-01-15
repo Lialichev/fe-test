@@ -1,6 +1,7 @@
+import { memo } from "react";
 import * as SelectUI from "@radix-ui/react-select";
-import SelectOption from "./SelectOption.tsx";
-import { Option } from "./types.ts";
+import SelectOption from "./SelectOption";
+import { Option } from "./types";
 
 type Props = {
   value: string;
@@ -35,4 +36,4 @@ const Select = ({ value, options, onChange }: Props) => (
   </SelectUI.Root>
 );
 
-export default Select;
+export default memo(Select);

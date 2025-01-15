@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { normalizeUser } from "../utils/normalizeUser";
-import { User } from "../types.ts";
+import { User } from "../types";
 
 type UseUsersReturn = {
   users: User[];

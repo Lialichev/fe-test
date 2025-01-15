@@ -1,5 +1,5 @@
+import { ChangeEvent, InputHTMLAttributes, memo, ReactNode } from "react";
 import clsx from "clsx";
-import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 
 type Props = {
   value: string;
@@ -38,4 +38,4 @@ const Input = ({ value, inputProps, inputClassName, className, icon, onChange }:
   );
 };
 
-export default Input;
+export default memo(Input);

@@ -1,6 +1,6 @@
 import * as Checkbox from "@radix-ui/react-checkbox";
 import checkIcon from "../../../../assets/check.svg";
-import { Column } from "../../types.ts";
+import { Column } from "../../types";
 
 type Props = {
   columns: Column[];

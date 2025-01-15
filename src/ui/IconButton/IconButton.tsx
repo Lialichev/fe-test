@@ -1,3 +1,4 @@
+import { memo } from "react";
 import clsx from "clsx";
 
 type Props = {
@@ -24,4 +25,4 @@ const IconButton = ({ isDisabled, icon, alt, iconClassName, className, onClick }
   </button>
 );
 
-export default IconButton;
+export default memo(IconButton);
