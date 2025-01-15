@@ -11,8 +11,10 @@ const SearchInput = ({ value, onChange } : Props) => (
     value={value}
     inputProps={{
       type: 'text',
-      placeholder: "Search...",
+      placeholder: 'Search...',
+      role: 'search',
       'aria-label': 'Search',
+      'aria-placeholder': 'Search...'
     }}
     icon={<img src={searchIcon} alt="search"/>}
     onChange={onChange}

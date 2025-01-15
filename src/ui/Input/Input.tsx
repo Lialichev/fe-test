@@ -1,19 +1,23 @@
-import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
+import { ChangeEvent, InputHTMLAttributes, ReactNode } from "react";
 
 type Props = {
   value: string;
   inputProps: InputHTMLAttributes<HTMLInputElement>;
   inputClassName?: string;
+  className?: string;
   icon?: string | ReactNode;
   onChange: (value: string) => void;
 };
 
-const Input = ({ value, inputProps, inputClassName, icon, onChange }: Props) => {
+const Input = ({ value, inputProps, inputClassName, className, icon, onChange }: Props) => {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => onChange(target.value);
 
   return (
-    <label className="flex items-center rounded-md p-2 bg-gray-100 border border-gray-200">
+    <label className={clsx(
+      className,
+      'flex items-center rounded-md p-2 bg-gray-100 border border-gray-200 focus-within:border-blue-700'
+    )}>
       {icon && (
         typeof icon === "string" ? (
           <span className="mr-2 text-gray-500">{icon}</span>

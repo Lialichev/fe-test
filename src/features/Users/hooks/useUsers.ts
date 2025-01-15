@@ -29,7 +29,7 @@ const useUsers = (searchQuery: string, page: number, limit: number): UseUsersRet
           { signal }
         );
         const { users, total } = await response.json();
-        // should use zod for that, ohhh shit
+        // should use zod for that, ah shit, here we go again
 
         setUsers(users.map(normalizeUser) || []);
         setTotal(total);

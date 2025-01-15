@@ -12,7 +12,7 @@ const TableRows = <T, >({ rows, columns }: { rows: Row<T>[], columns: Column<T>[
         return (
           <td
             key={key}
-            className={clsx(i === 0 && 'sticky left-0 bg-white', 'px-2 py-4 border border-gray-200 text-sm')}
+            className={clsx(i === 0 && 'sticky left-0 bg-white', 'px-2 py-4 border-r border-b border-gray-200 text-sm last:border-r-0')}
           >
             {
               CellComponent ? <CellComponent row={row} /> : cellValue

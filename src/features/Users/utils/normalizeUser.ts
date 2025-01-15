@@ -1,6 +1,7 @@
 import { capitalize } from "../../../utils/typography";
 import { User, UserResponse } from "../types.ts";
 
+// should use utils for transforming fields, ah shit, here we go again
 export const normalizeUser = (user: UserResponse): User => ({
   id: user.id,
   fullName: `${user.firstName} ${user.lastName}`,
