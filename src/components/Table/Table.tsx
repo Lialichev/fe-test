@@ -1,6 +1,6 @@
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import TableColumns from "./TableColumn.tsx";
-import TableRows from "./TableRow.tsx";
+import TableColumns from "./components/TableColumns.tsx";
+import TableRows from "./components/TableRows.tsx";
 import { Column, Row } from "./types.ts";
 
 type Props<T> = {
@@ -9,16 +9,14 @@ type Props<T> = {
 }
 
 const Table = <T, >({ columns, rows }: Props<T>) => (
-  <ScrollArea.Root className="w-full flex-grow mt-4 overflow-hidden rounded-xl border border-gray-200">
+  <ScrollArea.Root className="w-full flex-grow mt-4 overflow-hidden rounded-tl-xl rounded-tr-xl border border-gray-200">
     <ScrollArea.Viewport className="w-full h-full">
       <table className="table-auto w-max border-collapse border-hidden text-left">
         <thead>
-        <tr>
-          <TableColumns columns={columns} />
-        </tr>
+        <TableColumns columns={columns}/>
         </thead>
         <tbody>
-        <TableRows rows={rows} columns={columns} />
+        <TableRows rows={rows} columns={columns}/>
         </tbody>
       </table>
     </ScrollArea.Viewport>

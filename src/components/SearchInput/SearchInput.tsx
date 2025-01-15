@@ -1,4 +1,5 @@
-import searchIcon from '../../assets/searchIcon.svg';
+import searchIcon from '../../assets/search.svg';
+import Input from "../../ui/Input";
 
 type Props = {
   value: string;
@@ -6,17 +7,16 @@ type Props = {
 };
 
 const SearchInput = ({ value, onChange } : Props) => (
-  <label className="flex items-center rounded-md p-2 bg-gray-100 border border-gray-200">
-    <img className="mr-2" src={searchIcon} alt=""/>
-    <input
-      className="flex-1 outline-none bg-transparent placeholder-gray-600 text-gray-600 text-sm"
-      type="text"
-      placeholder="Search..."
-      value={value}
-      onChange={({ target }) => onChange(target.value)}
-      aria-label="Search"
-    />
-  </label>
+  <Input
+    value={value}
+    inputProps={{
+      type: 'text',
+      placeholder: "Search...",
+      'aria-label': 'Search',
+    }}
+    icon={<img src={searchIcon} alt="search"/>}
+    onChange={onChange}
+  />
 );
 
 export default SearchInput;

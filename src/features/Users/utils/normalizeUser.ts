@@ -1,10 +1,12 @@
-import { User } from "../hooks/useUsers.ts";
+import { capitalize } from "../../../utils/typography";
+import { User, UserResponse } from "../types.ts";
 
-export const normalizeUser = (user): User => ({
+export const normalizeUser = (user: UserResponse): User => ({
   id: user.id,
   fullName: `${user.firstName} ${user.lastName}`,
   birthday: `${user.birthDate} (${user.age} years old)`,
-  gender: user.gender,
+  image: user.image,
+  gender: capitalize(user.gender),
   email: user.email,
   phone: user.phone,
   username: user.username,
@@ -14,6 +16,7 @@ export const normalizeUser = (user): User => ({
   address: `${user.address.address}, ${user.address.city}, ${user.address.state}, ${user.address.postalCode}`,
   bank: user.bank.cardType,
   university: user.university,
+  company: user.company.name,
   ein: user.ein,
   ssn: user.ssn,
 });

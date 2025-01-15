@@ -1,23 +1,6 @@
 import { useEffect, useState } from "react";
 import { normalizeUser } from "../utils/normalizeUser";
-
-export type User = {
-  id: number;
-  fullName: string;
-  username: string;
-  email: string;
-  birthday?: string,
-  gender?: string,
-  phone?: string,
-  generalInfo?: string,
-  ip?: string,
-  macIp?: string,
-  address?: string,
-  bank?: string,
-  university?: string,
-  ein?: string,
-  ssn?: string,
-}
+import { User } from "../types.ts";
 
 type UseUsersReturn = {
   users: User[];
@@ -27,7 +10,7 @@ type UseUsersReturn = {
 }
 
 const useUsers = (searchQuery: string, page: number, limit: number): UseUsersReturn => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [total, setTotal] = useState(0);
@@ -42,10 +25,11 @@ const useUsers = (searchQuery: string, page: number, limit: number): UseUsersRet
         setError(false);
 
         const response = await fetch(
-          `https://dummyjson.com/users/search?q=${searchQuery}&limit=${limit}&skip=${(page - 1) * limit}`,
+          `https://dummyjson.com/users/search?q=${searchQuery}&limit=${limit}&skip=${((page ? page : 1) - 1) * limit}`,
           { signal }
         );
         const { users, total } = await response.json();
+        // should use zod for that, ohhh shit
 
         setUsers(users.map(normalizeUser) || []);
         setTotal(total);
