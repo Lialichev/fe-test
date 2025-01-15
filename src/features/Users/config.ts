@@ -1,24 +1,26 @@
-import { FC } from "react";
 import { Column, FullNameCell, GenderCell } from "../../components/Table";
-import FilterAction from "../../components/Table/components/Actions/FilterAction.tsx";
-import { User } from "./types.ts";
+import FilterAction from "../../components/Table/components/Actions/SettingsAction.tsx";
 
-export const config: { columns: Column<User>[] } = {
+type Config = {
+  columns: Column[];
+};
+
+export const config: Config = {
   columns: [
-    { key: 'fullName', label: 'full Name', cell: FullNameCell as FC<{ row: User }> },
-    { key: 'birthday', label: 'birthday' },
-    { key: 'gender', label: 'gender', cell: GenderCell as FC<{ row: User }> },
-    { key: 'email', label: 'email' },
-    { key: 'username', label: 'username' },
-    { key: 'generalInfo', label: 'general Info' },
-    { key: 'ip', label: 'ip' },
-    { key: 'macIp', label: 'mac Ip' },
-    { key: 'address', label: 'address' },
-    { key: 'bank', label: 'bank' },
-    { key: 'university', label: 'university' },
-    { key: 'company', label: 'company' },
-    { key: 'ein', label: 'ein' },
-    { key: 'ssn', label: 'ssn' },
-    { key: 'filter', label: 'filter', action: FilterAction },
+    { key: 'fullName', label: 'Full Name', notFilterable: true, cell: FullNameCell },
+    { key: 'birthday', label: 'Birthday' },
+    { key: 'gender', label: 'Gender', cell: GenderCell },
+    { key: 'email', label: 'Email', notFilterable: true },
+    { key: 'username', label: 'Username', notFilterable: true },
+    { key: 'generalInfo', label: 'General Info' },
+    { key: 'ip', label: 'IP' },
+    { key: 'macIp', label: 'MAC IP' },
+    { key: 'address', label: 'Address' },
+    { key: 'bank', label: 'Bank' },
+    { key: 'university', label: 'University' },
+    { key: 'company', label: 'Company' },
+    { key: 'ein', label: 'Ein' },
+    { key: 'ssn', label: 'SSN' },
+    { key: 'filter', action: FilterAction },
   ],
 }

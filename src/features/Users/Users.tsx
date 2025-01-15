@@ -7,6 +7,7 @@ import useUsers from "./hooks/useUsers.ts";
 import { config } from "./config.ts";
 
 const Users = () => {
+  const [columns, setColumns] = useState(config.columns);
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -16,6 +17,14 @@ const Users = () => {
   const debouncedLimit = useDebounce(limit, 300);
 
   const { users, total } = useUsers(debouncedSearchQuery, debouncedPage, debouncedLimit);
+
+  const toggleColumnVisibility = (key: string) => {
+    setColumns((prevColumns) =>
+      prevColumns.map((col) =>
+        col.key === key ? { ...col, hidden: !col.hidden } : col
+      )
+    );
+  };
 
   useEffect(() => {
     const isFirstPage = page === 1;
@@ -27,7 +36,12 @@ const Users = () => {
   return (
     <>
       <SearchInput value={searchQuery} onChange={setSearchQuery}/>
-      <Table columns={config.columns} rows={users} label="List of Users" />
+      <Table
+        columns={columns}
+        rows={users}
+        toggleColumnVisibility={toggleColumnVisibility}
+        label="List of Users"
+      />
       <Pagination limit={limit} total={total} page={page} onChangeLimit={setLimit} onChangePage={setPage}/>
     </>
   );

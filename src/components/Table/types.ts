@@ -1,10 +1,15 @@
-import { FC } from "react";
+import { ComponentType } from "react";
 
-export type Column<T> = {
-  key: keyof T & string | 'filter';
-  label: string;
-  cell?: FC<{ row: T }>;
-  isSticky?: boolean;
+export type Column = {
+  key: string;
+  label?: string;
+  cell?: ComponentType<any>;
+  action?: ComponentType<any>;
+  sticky?: boolean;
+  hidden?: boolean;
+  notFilterable?: boolean;
 };
 
-export type Row<T> = T;
+export type Row = {
+  [key: string]: string | number;
+};

@@ -1,5 +1,6 @@
 import * as SelectUI from "@radix-ui/react-select";
 import { Option } from "./types.ts";
+import checkIcon from "../../assets/check.svg";
 
 type Props = {
   option: Option;
@@ -11,7 +12,9 @@ const SelectOption = ({ option }: Props) => (
     value={option.value}
   >
     <SelectUI.ItemText>{option.label}</SelectUI.ItemText>
-    <SelectUI.ItemIndicator className="text-blue-500 ml-2 pb-1">✔</SelectUI.ItemIndicator>
+    <SelectUI.ItemIndicator className="text-blue-500 ml-2">
+      <img src={checkIcon} alt="Check"/>
+    </SelectUI.ItemIndicator>
   </SelectUI.Item>
 );
 

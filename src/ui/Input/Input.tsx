@@ -27,7 +27,7 @@ const Input = ({ value, inputProps, inputClassName, className, icon, onChange }:
       )}
       <input
         className={clsx(
-          inputClassName && inputClassName,
+          inputClassName,
           'flex-1 outline-none bg-transparent placeholder-gray-600 text-gray-600 text-sm'
         )}
         {...inputProps}
