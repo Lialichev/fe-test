@@ -6,14 +6,18 @@ import { Column, Row } from "./types.ts";
 type Props<T> = {
   columns: Column<T>[];
   rows: Row<T>[];
+  label?: string;
 }
 
-const Table = <T, >({ columns, rows }: Props<T>) => (
+const Table = <T, >({ columns, rows, label }: Props<T>) => (
   <ScrollArea.Root className="w-full flex-grow mt-4 overflow-hidden rounded-tl-xl rounded-tr-xl border border-gray-200">
     <ScrollArea.Viewport className="w-full h-full">
-      <table className="table-auto w-max border-separate border-spacing-0 border-hidden text-left">
+      <table
+        className="table-auto w-max border-separate border-spacing-0 border-hidden text-left"
+        aria-label={label}
+      >
         <thead>
-        <TableColumns columns={columns}/>
+        <TableColumns columns={columns} />
         </thead>
         <tbody>
         <TableRows rows={rows} columns={columns}/>

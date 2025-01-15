@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 export type Column<T> = {
-  key: keyof T & string;
+  key: keyof T & string | 'filter';
   label: string;
   cell?: FC<{ row: T }>;
   isSticky?: boolean;

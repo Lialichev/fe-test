@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Column, FullNameCell, GenderCell } from "../../components/Table";
+import FilterAction from "../../components/Table/components/Actions/FilterAction.tsx";
 import { User } from "./types.ts";
 
 export const config: { columns: Column<User>[] } = {
@@ -18,5 +19,6 @@ export const config: { columns: Column<User>[] } = {
     { key: 'company', label: 'company' },
     { key: 'ein', label: 'ein' },
     { key: 'ssn', label: 'ssn' },
+    { key: 'filter', label: 'filter', action: FilterAction },
   ],
 }

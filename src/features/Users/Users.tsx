@@ -27,7 +27,7 @@ const Users = () => {
   return (
     <>
       <SearchInput value={searchQuery} onChange={setSearchQuery}/>
-      <Table columns={config.columns} rows={users}/>
+      <Table columns={config.columns} rows={users} label="List of Users" />
       <Pagination limit={limit} total={total} page={page} onChangeLimit={setLimit} onChangePage={setPage}/>
     </>
   );
