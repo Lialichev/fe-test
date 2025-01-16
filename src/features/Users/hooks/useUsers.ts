@@ -28,16 +28,25 @@ const useUsers = (searchQuery: string, page: number, limit: number): UseUsersRet
           `https://dummyjson.com/users/search?q=${searchQuery}&limit=${limit}&skip=${((page ? page : 1) - 1) * limit}`,
           { signal }
         );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const { users, total } = await response.json();
         // should use zod for that, ah shit, here we go again
 
         setUsers(users.map(normalizeUser) || []);
         setTotal(total);
       } catch (e) {
+        if (e instanceof DOMException && e.name === "AbortError") {
+          return;
+        }
+
         setError(true);
-      } finally {
-        setLoading(false);
       }
+
+      setLoading(false);
     };
 
     fetchUsers();

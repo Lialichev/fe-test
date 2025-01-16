@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "../../components/Table";
 import Pagination from "../../components/Pagination";
 import SearchInput from "../../components/SearchInput";
@@ -16,15 +16,7 @@ const Users = () => {
   const debouncedPage = useDebounce(page, 300);
   const debouncedLimit = useDebounce(limit, 300);
 
-  const { users, total } = useUsers(debouncedSearchQuery, debouncedPage, debouncedLimit);
-
-  const toggleColumnVisibility = useCallback((key: string) => {
-    setColumns((prevColumns) =>
-      prevColumns.map((col) =>
-        col.key === key ? { ...col, hidden: !col.hidden } : col
-      )
-    );
-  }, []);
+  const { users, total, loading, error } = useUsers(debouncedSearchQuery, debouncedPage, debouncedLimit);
 
   useEffect(() => {
     const isFirstPage = page === 1;
@@ -37,10 +29,13 @@ const Users = () => {
     <>
       <SearchInput value={searchQuery} onChange={setSearchQuery}/>
       <Table
+        id="users"
+        loading={loading}
+        error={error}
         columns={columns}
         rows={users}
-        toggleColumnVisibility={toggleColumnVisibility}
         label="List of Users"
+        setColumns={setColumns}
       />
       <Pagination limit={limit} total={total} page={page} onChangeLimit={setLimit} onChangePage={setPage}/>
     </>

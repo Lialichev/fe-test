@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import { ComponentType, Dispatch, SetStateAction } from "react";
 
 export type Column = {
   key: string;
@@ -13,3 +13,13 @@ export type Column = {
 export type Row = {
   [key: string]: string | number;
 };
+
+export type TableProps = {
+  id: string;
+  columns: Column[];
+  rows: Row[];
+  setColumns: Dispatch<SetStateAction<Column[]>>;
+  loading?: boolean;
+  error?: boolean;
+  label?: string;
+}

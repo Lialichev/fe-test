@@ -1,33 +1,43 @@
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import TableColumns from "./components/TableColumns";
 import TableRows from "./components/TableRows";
+import TableStatus from "./components/TableStatus";
 import Scrollbar from "../../ui/Scrollbar";
-import { Column, Row } from "./types";
+import withTableContext from "./hocs/withTableContext";
+import { useTableContext } from "./context/TableContext";
 
-type Props = {
-  columns: Column[];
-  rows: Row[];
-  label?: string;
-  toggleColumnVisibility?: (key: string) => void;
-}
+const Table = () => {
+  const { columns, rows, label, loading, error } = useTableContext();
 
-const Table = ({ columns, rows, label, toggleColumnVisibility }: Props) => (
-  <ScrollArea.Root className="w-full flex-grow mt-4 overflow-hidden rounded-tl-xl rounded-tr-xl border border-gray-200">
-    <ScrollArea.Viewport className="size-full">
-      <table
-        className="table-auto w-max min-w-full border-separate border-spacing-0 border-hidden text-left"
-        aria-label={label}
-      >
-        <thead>
-        <TableColumns columns={columns} toggleColumnVisibility={toggleColumnVisibility} />
-        </thead>
-        <tbody>
-        <TableRows rows={rows} columns={columns}/>
-        </tbody>
-      </table>
-    </ScrollArea.Viewport>
-    <Scrollbar />
-  </ScrollArea.Root>
-);
+  return (
+    <ScrollArea.Root
+      className="w-full flex-grow mt-4 overflow-hidden rounded-tl-xl rounded-tr-xl border border-gray-200">
+      <ScrollArea.Viewport className="size-full">
+        {
+          loading
+            ? <TableStatus label="Loading Page" type="loading" />
+            : error
+              ? <TableStatus label="Opps, something went wrong" type="error" />
+              : rows.length
+                ? (
+                  <table
+                    className="table-auto w-max min-w-full border-separate border-spacing-0 border-hidden text-left"
+                    aria-label={label}
+                  >
+                    <thead>
+                    <TableColumns columns={columns}/>
+                    </thead>
+                    <tbody>
+                    <TableRows rows={rows} columns={columns}/>
+                    </tbody>
+                  </table>
+                )
+                : <TableStatus label="Not found" type="warning" />
+        }
+      </ScrollArea.Viewport>
+      <Scrollbar/>
+    </ScrollArea.Root>
+  );
+};
 
-export default Table;
+export default withTableContext(Table);

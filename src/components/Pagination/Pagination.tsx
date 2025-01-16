@@ -1,8 +1,8 @@
-import { useMemo } from "react";
 import PaginationLimit from "./components/PaginationLimit";
 import { Option } from "../../ui/Select";
 import Input from "../../ui/Input";
 import IconButton from "../../ui/IconButton";
+import { usePagination } from "./hooks/usePagination";
 import caretRightLineIcon from "../../assets/caret-right-line.svg";
 import caretRightIcon from "../../assets/caret-right.svg";
 
@@ -16,30 +16,18 @@ type Props = {
 };
 
 const Pagination = ({ limit, limitOptions, total, page, onChangeLimit, onChangePage }: Props) => {
-  const realPage = page || 1;
-  const maxPage = Math.ceil(total / limit);
-
-  const [orderFirst, orderLast] = useMemo(() => {
-    const first = (realPage - 1) * limit + 1;
-    const last = Math.min(first + limit - 1, total);
-    return [first, last];
-  }, [realPage, limit, total]);
-
-  const isNextDisabled = orderLast >= total;
-  const isPrevDisabled = orderFirst === 1;
-
-  const handlePageChange = (value: string | number) => {
-    const numValue = Number(value);
-
-    if (numValue >= 0 && numValue <= maxPage) {
-      onChangePage(numValue);
-    }
-  }
-
-  const handlePageIncrement = () => !isNextDisabled && handlePageChange(page + 1);
-  const handlePageDecrement = () => !isPrevDisabled && handlePageChange(page - 1);
-  const handlePageFirst = () => handlePageChange(1);
-  const handlePageLast = () => handlePageChange(maxPage);
+  const {
+    orderFirst,
+    orderLast,
+    maxPage,
+    isNextDisabled,
+    isPrevDisabled,
+    handlePageChange,
+    handlePageIncrement,
+    handlePageDecrement,
+    handlePageFirst,
+    handlePageLast,
+  } = usePagination({ limit, total, page, onChangePage });
 
   return (
     <div className="flex justify-between items-center p-2 rounded-bl-xl rounded-br-xl border border-t-0 border-gray-200">

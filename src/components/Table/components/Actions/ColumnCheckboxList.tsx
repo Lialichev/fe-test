@@ -4,10 +4,10 @@ import { Column } from "../../types";
 
 type Props = {
   columns: Column[];
-  toggleColumnVisibility?: (key: string) => void;
+  handleColumnVisibility?: (key: string, hidden: boolean) => void;
 };
 
-const ColumnCheckboxList = ({ columns, toggleColumnVisibility }: Props) => (
+const ColumnCheckboxList = ({ columns, handleColumnVisibility }: Props) => (
   <>
     {
       columns.length
@@ -17,7 +17,7 @@ const ColumnCheckboxList = ({ columns, toggleColumnVisibility }: Props) => (
             className="w-full px-2 mt-1 h-8 flex items-center justify-between outline-none border border-transparent rounded-md transition-colors duration-200 hover:bg-gray-100 focus-visible:border-blue-700 disabled:text-gray-500"
             checked={!hidden}
             disabled={notFilterable}
-            onCheckedChange={() => toggleColumnVisibility?.(key)}
+            onCheckedChange={() => handleColumnVisibility?.(key, !hidden)}
             aria-label={label}
           >
             <p className="text-sm">{label}</p>
