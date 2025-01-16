@@ -1,3 +1,4 @@
+import { memo } from "react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import checkIcon from "../../../../assets/check.svg";
 import { Column } from "../../types";
@@ -31,4 +32,4 @@ const ColumnCheckboxList = ({ columns, handleColumnVisibility }: Props) => (
   </>
 );
 
-export default ColumnCheckboxList;
+export default memo(ColumnCheckboxList);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import clsx from "clsx";
 import errorIcon from "../../../assets/error.svg";
 import warningIcon from "../../../assets/question.svg";
@@ -30,4 +31,4 @@ const TableStatus = ({ label, type }: Props) => {
   );
 };
 
-export default TableStatus;
+export default memo(TableStatus);
