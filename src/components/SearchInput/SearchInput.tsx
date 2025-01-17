@@ -17,7 +17,8 @@ const SearchInput = ({ value, onChange } : Props) => (
       'aria-label': 'Search',
       'aria-placeholder': 'Search...'
     }}
-    icon={<img src={searchIcon} alt="search"/>}
+    icon={searchIcon}
+    alt="Search"
     onChange={onChange}
   />
 );
